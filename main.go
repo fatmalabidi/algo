@@ -8,10 +8,24 @@ import (
 	"strconv"
 	"strings"
 )
-// TODO complete for testcase
-// {(([])[])[]} : asymmetric balance
 
 func isBalanced(s string) string {
+	n := -1
+	for len(s) != n {
+		n = len(s)
+		s = strings.ReplaceAll(s, "[]", "")
+		s = strings.ReplaceAll(s, "{}", "")
+		s = strings.ReplaceAll(s, "()", "")
+	}
+	if n == 0 {
+		return "YES"
+	}
+	return "NO"
+}
+
+/*
+func isBalanced(s string) string {
+
 	fmt.Println("len(s) ", len(s))
 	fmt.Println("s ", s)
 	stringArray := strings.Split(s, "")
@@ -55,7 +69,7 @@ func isBalanced(s string) string {
 		}
 	}
 	return "YES"
-}
+}*/
 
 func main() {
 	reader := bufio.NewReaderSize(os.Stdin, 16*1024*1024)
